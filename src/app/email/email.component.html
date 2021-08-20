@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a class="navbar-brand">Email Validation</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02"
+      aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+ </nav>
+  
+  <div class="register-wrapper">
+    <div class="card">
+      <div class="card-body">
+  
+        <form #registerForm="ngForm" (ngSubmit)="saveRegister(registerForm)">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Email</h3>
+            </div>
+            <div class="panel-body">
+    
+              <div class="form-group" [class.has-error]="emailControl.invalid && emailControl.touched"
+                [class.has-success]="emailControl.valid">
+                <label for="email">Email</label>
+                <input id="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" type="text"
+                  class="form-control" name="email" [(ngModel)]="email" #emailControl="ngModel" required>
+                <span class="help-block" *ngIf="emailControl.errors?.required && emailControl.touched">
+                  Email is required
+                </span>
+                <span class="help-block" *ngIf="emailControl.errors?.pattern && emailControl.touched">
+                  Email is Invalid
+                </span>
+              </div>
+   
+            </div>
+            <div class="panel-footer">
+              <br><button class="btn btn-primary" type="submit" [disabled]="registerForm.invalid">valid</button>              
+            </div>
+          </div>
+        </form>
+  
+      </div>
+    </div>
+  </div>
